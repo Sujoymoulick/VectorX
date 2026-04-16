@@ -93,7 +93,7 @@ export default function AuthPage() {
               {isLogin ? 'WELCOME BACK' : 'JOIN ARENA'}
             </h2>
             <p className="text-zinc-500 text-sm leading-relaxed max-w-[280px]">
-              {isLogin ? 'Enter your credentials to descend back into the race.' : 'Create an identity to start your journey in VelocityX.'}
+              {isLogin ? 'Enter your credentials to descend back into the race.' : 'Create an identity to start your journey in VectorX.'}
             </p>
           </div>
 

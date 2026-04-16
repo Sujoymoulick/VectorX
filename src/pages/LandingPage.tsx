@@ -50,7 +50,7 @@ export default function LandingPage() {
               >
                 <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-black text-emerald-accent mb-6 block">#1 Racing Arena</span>
                 <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-shadow-glow">
-                  VELOCITY<br /><span className="text-white/20 text-3xl sm:text-5xl md:text-8xl">ARENA</span>
+                  VECTOR<br /><span className="text-white/20 text-3xl sm:text-5xl md:text-8xl">ARENA</span>
                 </h1>
                 <p className="text-xs md:text-base text-zinc-400 max-w-sm mx-auto md:mx-0 mb-12 leading-relaxed font-medium">
                   Experience high-octane 2D racing directly in your browser. Join millions of players, customize your rig, and climb the global rankings.

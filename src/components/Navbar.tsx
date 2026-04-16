@@ -36,7 +36,7 @@ export default function Navbar() {
                 <div className="absolute inset-0 bg-emerald-accent/20 blur-lg group-hover:bg-emerald-accent/40 transition-colors" />
                 <div className="relative w-2 h-2 rounded-full bg-emerald-accent shadow-[0_0_10px_#10b981]" />
               </div>
-              Velocity<span className="text-emerald-accent">X</span>
+              Vector<span className="text-emerald-accent">X</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[0.2em] font-bold text-zinc-500">
@@ -123,9 +123,9 @@ export default function Navbar() {
 
               <div className="h-full flex flex-col justify-between">
                 <div className="space-y-12">
-                  <div className="text-white font-bold text-2xl tracking-tighter">
-                    Velocity<span className="text-emerald-accent">X</span>
-                  </div>
+                  <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-shadow-glow">
+                  VECTOR<br /><span className="text-white/20 text-3xl sm:text-5xl md:text-8xl">ARENA</span>
+                </h1>  </div>
 
                   <nav className="flex flex-col gap-8">
                     {menuLinks.filter(link => link.show !== false).map(link => (
