@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { GAMES, GameCategory, Game } from '../data/games';
 import { ChevronRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Github, Twitter, Instagram, Info, ChevronRight, Play } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import GameGrid from '../components/GameGrid';
 
 export default function LandingPage() {

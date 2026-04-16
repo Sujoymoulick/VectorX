@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Trophy, User, LogOut, ShieldAlert, Crown, Menu } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export default function Navbar() {
   const { user, logout } = useAuth();

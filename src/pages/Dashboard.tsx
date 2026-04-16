@@ -1,8 +1,9 @@
 import { useAuth } from '../contexts/AuthContext';
 import { Trophy, Crown, Clock, Gamepad2, ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import GameGrid from '../components/GameGrid';
+import { GAMES } from '../data/games';
 
 export default function Dashboard() {
   const { user, upgradeToPremium } = useAuth();

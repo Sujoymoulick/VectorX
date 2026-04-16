@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { AlertCircle, Loader2, ArrowLeft, ChevronRight, Lock, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('');
