@@ -16,26 +16,26 @@ export default function Dashboard() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16 text-center md:text-left">
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-emerald-accent text-[10px] uppercase tracking-[0.4em] font-black mb-4 block">Archive 01</span>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-4 italic">IDENTITY: {user.displayName.toUpperCase()}</h1>
-            <p className="text-zinc-500 font-medium">Session initialized. Accessing authorized arenas.</p>
+            <span className="text-emerald-accent text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-black mb-4 block">Archive 01</span>
+            <h1 className="text-4xl md:text-7xl font-black tracking-tighter mb-4 italic">IDENTITY: {user.displayName.toUpperCase()}</h1>
+            <p className="text-zinc-500 text-xs md:text-sm font-medium">Session initialized. Accessing authorized arenas.</p>
           </motion.div>
 
           <motion.div
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="flex gap-4"
+            className="flex justify-center md:justify-end gap-4"
           >
             <Link 
               to={`/play/${GAMES[Math.floor(Math.random() * GAMES.length)].id}`} 
-              className="group flex items-center gap-4 bg-emerald-accent text-forest-950 px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-cyber-lime transition-all"
+              className="group flex items-center gap-4 bg-emerald-accent text-forest-950 px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-cyber-lime transition-all w-full sm:w-auto justify-center"
             >
               Quick Launch <Play className="w-4 h-4 fill-current transition-transform group-hover:scale-110" />
             </Link>

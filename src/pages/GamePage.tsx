@@ -323,31 +323,32 @@ export default function GamePage() {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 py-32 font-sans">
-      <div className="flex flex-col xl:flex-row gap-12">
+  return (
+    <div className="max-w-[1400px] mx-auto px-6 py-20 md:py-32 font-sans">
+      <div className="flex flex-col xl:flex-row gap-8 md:gap-12">
         {/* Game Area */}
-        <div className="flex-1 relative group">
-          <div className="glass-card rounded-[40px] overflow-hidden relative shadow-[0_0_100px_rgba(0,0,0,0.4)] aspect-video md:aspect-[16/9] min-h-[500px]">
+        <div className="flex-1 relative group w-full">
+          <div className="glass-card rounded-[32px] md:rounded-[40px] overflow-hidden relative shadow-[0_0_100px_rgba(0,0,0,0.4)] aspect-[4/3] sm:aspect-video md:aspect-[16/9] min-h-[400px] md:min-h-[500px]">
             <Canvas shadows gl={{ antialias: true }}>
               {renderEngine()}
             </Canvas>
             
             {/* Overlays */}
             {!isPlaying && !isGameOver && (
-              <div className="absolute inset-0 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center text-center p-12 z-10">
+              <div className="absolute inset-0 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center text-center p-8 md:p-12 z-10">
                 <motion.div 
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  className="max-w-md"
+                  className="max-w-md w-full"
                 >
-                  <div className="w-20 h-20 rounded-3xl bg-emerald-accent/20 flex items-center justify-center mb-8 mx-auto border border-emerald-accent/20">
-                    <game.icon className="w-10 h-10 text-emerald-accent" />
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl bg-emerald-accent/20 flex items-center justify-center mb-6 md:mb-8 mx-auto border border-emerald-accent/20">
+                    <game.icon className="w-8 h-8 md:w-10 md:h-10 text-emerald-accent" />
                   </div>
-                  <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">{game.title}</h2>
-                  <p className="text-zinc-500 mb-10 text-sm font-medium leading-relaxed">{game.description}</p>
+                  <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">{game.title}</h2>
+                  <p className="text-zinc-500 mb-8 md:mb-10 text-xs md:text-sm font-medium leading-relaxed px-4">{game.description}</p>
                   <button 
                     onClick={startGame}
-                    className="group bg-emerald-accent text-forest-950 px-12 py-5 rounded-full font-black text-[12px] uppercase tracking-[0.3em] hover:bg-cyber-lime transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(16,185,129,0.3)] flex items-center gap-4 mx-auto"
+                    className="group bg-emerald-accent text-forest-950 px-8 py-4 md:px-12 md:py-5 rounded-full font-black text-[10px] md:text-[12px] uppercase tracking-[0.3em] hover:bg-cyber-lime transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(16,185,129,0.3)] flex items-center gap-4 mx-auto"
                   >
                     Initialize Neural Link <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -356,24 +357,24 @@ export default function GamePage() {
             )}
 
             {isGameOver && (
-              <div className="absolute inset-0 bg-red-950/90 backdrop-blur-2xl flex flex-col items-center justify-center text-center p-12 z-10">
-                <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-                  <h2 className="text-6xl md:text-8xl font-black text-white mb-6 uppercase tracking-tighter italic">NEURAL DISCONNECT</h2>
-                  <div className="bg-black/40 rounded-3xl p-8 mb-10 border border-white/5 inline-block">
-                    <p className="text-xs text-zinc-500 uppercase tracking-widest font-black mb-2">Sync Data Integrity</p>
-                    <div className="text-7xl font-black text-white font-mono italic">{Math.floor(score).toLocaleString()}</div>
+              <div className="absolute inset-0 bg-red-950/90 backdrop-blur-2xl flex flex-col items-center justify-center text-center p-8 md:p-12 z-10">
+                <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="w-full">
+                  <h2 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-6 uppercase tracking-tighter italic">NEURAL DISCONNECT</h2>
+                  <div className="bg-black/40 rounded-3xl p-6 md:p-8 mb-8 md:mb-10 border border-white/5 inline-block">
+                    <p className="text-[9px] text-zinc-500 uppercase tracking-widest font-black mb-2">Sync Data Integrity</p>
+                    <div className="text-5xl md:text-7xl font-black text-white font-mono italic">{Math.floor(score).toLocaleString()}</div>
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
                     <button 
                       onClick={startGame}
-                      className="flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-zinc-200 transition-all hover:scale-105"
+                      className="flex items-center gap-4 bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] hover:bg-zinc-200 transition-all hover:scale-105 justify-center"
                     >
                       <RotateCcw className="w-4 h-4" /> Re-Initialize
                     </button>
                     <Link 
                       to="/dashboard"
-                      className="flex items-center gap-4 bg-white/5 text-white px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 border border-white/10 transition-all"
+                      className="flex items-center gap-4 bg-white/5 text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-[10px] md:text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 border border-white/10 transition-all justify-center"
                     >
                       Exit Arena
                     </Link>
@@ -384,19 +385,19 @@ export default function GamePage() {
 
             {/* HUD */}
             {isPlaying && (
-              <div className="absolute top-8 left-8 right-8 flex justify-between items-start pointer-events-none z-10">
+              <div className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex justify-between items-start pointer-events-none z-10">
                 <motion.div 
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl px-8 py-4"
+                  className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl px-4 py-2 md:px-8 md:py-4"
                 >
-                  <p className="text-[9px] text-zinc-500 font-black uppercase tracking-[0.3em] mb-1">Velocity Score</p>
-                  <p className="text-4xl font-mono font-black text-white italic">{Math.floor(score)}</p>
+                  <p className="text-[7px] md:text-[9px] text-zinc-500 font-black uppercase tracking-[0.3em] mb-1">Velocity Score</p>
+                  <p className="text-xl md:text-4xl font-mono font-black text-white italic">{Math.floor(score)}</p>
                 </motion.div>
                 
                 <div className="flex flex-col items-end gap-3">
-                  <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-3">
-                    <p className="text-[9px] text-emerald-accent font-black uppercase tracking-[0.3em]">Link Stable</p>
+                  <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl px-3 py-1.5 md:px-6 md:py-3">
+                    <p className="text-[7px] md:text-[9px] text-emerald-accent font-black uppercase tracking-[0.3em]">Link Stable</p>
                   </div>
                 </div>
               </div>
@@ -405,34 +406,34 @@ export default function GamePage() {
         </div>
 
         {/* Sidebar */}
-        <div className="w-full xl:w-[400px] flex flex-col gap-8">
+        <div className="w-full xl:w-[400px] flex flex-col gap-6 md:gap-8">
           <motion.div 
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="glass-card rounded-[40px] p-10"
+            className="glass-card rounded-[32px] md:rounded-[40px] p-8 md:p-10"
           >
-            <div className="flex items-center gap-5 mb-10">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/20 flex items-center justify-center border border-amber-500/20">
-                <Trophy className="w-6 h-6 text-amber-500" />
+            <div className="flex items-center gap-5 mb-8 md:mb-10">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-amber-500/20 flex items-center justify-center border border-amber-500/20">
+                <Trophy className="w-5 h-5 md:w-6 md:h-6 text-amber-500" />
               </div>
-              <h3 className="text-2xl font-black italic tracking-tight">OPERATIVE STATS</h3>
+              <h3 className="text-xl md:text-2xl font-black italic tracking-tight">OPERATIVE STATS</h3>
             </div>
             
-            <div className="space-y-6">
-              <div className="bg-black/40 rounded-3xl p-6 border border-white/5">
-                <p className="text-[9px] text-zinc-500 uppercase tracking-[0.3em] font-black mb-2">Personal Best</p>
-                <p className="text-3xl font-mono font-black italic">{user?.highScore.toLocaleString()}</p>
+            <div className="space-y-4 md:space-y-6">
+              <div className="bg-black/40 rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5">
+                <p className="text-[8px] md:text-[9px] text-zinc-500 uppercase tracking-[0.3em] font-black mb-2">Personal Best</p>
+                <p className="text-2xl md:text-3xl font-mono font-black italic">{user?.highScore.toLocaleString()}</p>
               </div>
               
-              <div className="bg-black/40 rounded-3xl p-6 border border-white/5">
-                <p className="text-[9px] text-zinc-500 uppercase tracking-[0.3em] font-black mb-4">Neural Rig</p>
+              <div className="bg-black/40 rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/5">
+                <p className="text-[8px] md:text-[9px] text-zinc-500 uppercase tracking-[0.3em] font-black mb-4">Neural Rig</p>
                 <div className="flex items-center gap-4">
                   <div className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center ${user?.isPremium ? 'bg-amber-500/10 border-amber-500/50' : 'bg-indigo-500/10 border-indigo-500/50'}`}>
                     <Gamepad2 className={`w-5 h-5 ${user?.isPremium ? 'text-amber-500' : 'text-indigo-500'}`} />
                   </div>
                   <div>
-                    <p className="text-[11px] font-black uppercase tracking-wider">{user?.isPremium ? 'Titanium Core' : 'Nerv Guard Original'}</p>
-                    <p className="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">{user?.isPremium ? 'Pro Clearance' : 'Standard Identity'}</p>
+                    <p className="text-[10px] md:text-[11px] font-black uppercase tracking-wider">{user?.isPremium ? 'Titanium Core' : 'Nerv Guard Original'}</p>
+                    <p className="text-[8px] md:text-[9px] text-zinc-600 font-bold uppercase tracking-widest">{user?.isPremium ? 'Pro Clearance' : 'Standard Identity'}</p>
                   </div>
                 </div>
               </div>
@@ -443,20 +444,20 @@ export default function GamePage() {
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="glass-card rounded-[40px] p-10 relative overflow-hidden group"
+            className="glass-card rounded-[32px] md:rounded-[40px] p-8 md:p-10 relative overflow-hidden group"
           >
-            <div className="flex items-center gap-5 mb-8">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-accent/20 flex items-center justify-center border border-emerald-accent/20">
-                <Info className="w-6 h-6 text-emerald-accent" />
+            <div className="flex items-center gap-5 mb-6 md:mb-8">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-emerald-accent/20 flex items-center justify-center border border-emerald-accent/20">
+                <Info className="w-5 h-5 md:w-6 md:h-6 text-emerald-accent" />
               </div>
-              <h3 className="text-2xl font-black italic tracking-tight uppercase">Manual</h3>
+              <h3 className="text-xl md:text-2xl font-black italic tracking-tight uppercase">Manual</h3>
             </div>
             
-            <div className="space-y-5">
+            <div className="space-y-4 md:space-y-5">
               <ControlItem label="Lateral Motion" keys={['A', 'D']} />
               <ControlItem label="Vector Align" keys={['←', '→']} />
               <div className="pt-4 border-t border-white/5 mt-4">
-                <p className="text-[10px] text-zinc-500 leading-relaxed font-medium">
+                <p className="text-[9px] md:text-[10px] text-zinc-500 leading-relaxed font-medium">
                   Synchronization requires rapid response to vector shifts. Maintain neural focus to prevent disconnect.
                 </p>
               </div>

@@ -17,7 +17,7 @@ export default function LandingPage() {
         <div className="absolute bottom-[20%] left-[-10%] w-[40%] h-[40%] bg-emerald-accent/5 blur-[100px] rounded-full pointer-events-none" />
 
         {/* Main Hero Container */}
-        <main className="relative z-10 w-full max-w-[1400px] h-[85vh] md:h-[750px] flex items-stretch">
+        <main className="relative z-10 w-full max-w-[1400px] min-h-[600px] h-auto md:h-[750px] flex items-stretch">
           
           {/* Left Sidebar (Reference style) */}
           <motion.aside 
@@ -38,28 +38,28 @@ export default function LandingPage() {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: "circOut" }}
-            className="flex-1 glass-card rounded-[40px] flex flex-col md:flex-row items-center overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.5)] border-white/5"
+            className="flex-1 glass-card rounded-[32px] md:rounded-[40px] flex flex-col md:flex-row items-center overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.5)] border-white/5"
           >
             
             {/* Content (Left side on desktop) */}
-            <div className="flex-1 p-8 md:p-20 z-20 text-center md:text-left flex flex-col justify-center">
+            <div className="flex-1 p-8 md:p-20 z-20 text-center md:text-left flex flex-col justify-center w-full">
               <motion.div 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-emerald-accent mb-6 block">#1 Racing Arena</span>
-                <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-shadow-glow">
-                  VELOCITY<br /><span className="text-white/20">ARENA</span>
+                <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-black text-emerald-accent mb-6 block">#1 Racing Arena</span>
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-shadow-glow">
+                  VELOCITY<br /><span className="text-white/20 text-3xl sm:text-5xl md:text-8xl">ARENA</span>
                 </h1>
-                <p className="text-sm md:text-base text-zinc-400 max-w-sm mb-12 leading-relaxed font-medium">
+                <p className="text-xs md:text-base text-zinc-400 max-w-sm mx-auto md:mx-0 mb-12 leading-relaxed font-medium">
                   Experience high-octane 2D racing directly in your browser. Join millions of players, customize your rig, and climb the global rankings.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row items-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
                   <Link 
-                    to={user ? "/play" : "/auth"} 
-                    className="group flex items-center gap-4 bg-emerald-accent text-forest-950 px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-cyber-lime transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(16,185,129,0.3)]"
+                    to={user ? "/play/ag-racer" : "/auth"} 
+                    className="group flex items-center gap-4 bg-emerald-accent text-forest-950 px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-cyber-lime transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(16,185,129,0.3)] w-full sm:w-auto justify-center"
                   >
                     Start Racing <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
@@ -95,19 +95,19 @@ export default function LandingPage() {
       </div>
 
       {/* Game Library Section */}
-      <section className="relative z-10 py-32 px-6">
+      <section className="relative z-10 py-20 md:py-32 px-6">
         <div className="max-w-[1400px] mx-auto">
           <motion.div 
             initial={{ y: 40, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-24"
+            className="text-center mb-16 md:mb-24"
           >
             <span className="text-emerald-accent text-[10px] uppercase tracking-[0.4em] font-black mb-4 block">Archive 02</span>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 italic">CHOOSE YOUR ARENA</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-emerald-accent/50 to-transparent mx-auto mb-8" />
-            <p className="text-zinc-500 max-w-lg mx-auto text-sm leading-relaxed">
+            <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-8 italic">CHOOSE YOUR ARENA</h2>
+            <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-emerald-accent/50 to-transparent mx-auto mb-8" />
+            <p className="text-zinc-500 max-w-lg mx-auto text-xs md:text-sm leading-relaxed px-4">
               From the infinite void to high-gravity physics tests, our expanded library offers diverse challenges across the vector galaxy.
             </p>
           </motion.div>
