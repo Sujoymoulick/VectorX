@@ -123,9 +123,11 @@ export default function Navbar() {
 
               <div className="h-full flex flex-col justify-between">
                 <div className="space-y-12">
-                  <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-shadow-glow">
-                  VECTOR<br /><span className="text-white/20 text-3xl sm:text-5xl md:text-8xl">ARENA</span>
-                </h1>  </div>
+                <div className="space-y-12">
+                  <div className="text-white font-bold text-2xl tracking-tighter">
+                    Vector<span className="text-emerald-accent">X</span>
+                  </div>
+                </div>
 
                   <nav className="flex flex-col gap-8">
                     {menuLinks.filter(link => link.show !== false).map(link => (

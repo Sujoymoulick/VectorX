@@ -38,9 +38,19 @@ function SpaceEngine({ game, isPlaying, isGameOver, endGame, updateScore, user }
       if (e.key === 'ArrowLeft' || e.key === 'a') setLane(l => Math.max(0, l - 1));
       else if (e.key === 'ArrowRight' || e.key === 'd') setLane(l => Math.min(2, l + 1));
     };
+    const handleMobile = (e: any) => {
+      if (!isPlaying || isGameOver) return;
+      if (e.detail === 'left') setLane(l => Math.max(0, l - 1));
+      else if (e.detail === 'right') setLane(l => Math.min(2, l + 1));
+    };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('game-move', handleMobile);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('game-move', handleMobile);
+    };
   }, [isPlaying, isGameOver]);
+
 
   useFrame((_, delta) => {
     if (!isPlaying || isGameOver) return;
@@ -322,13 +332,18 @@ export default function GamePage() {
     }
   };
 
-  return (
+  const handleMobileMove = (dir: 'left' | 'right') => {
+    // We'll dispatch a custom event that engines can listen to
+    const event = new CustomEvent('game-move', { detail: dir });
+    window.dispatchEvent(event);
+  };
+
+
   return (
     <div className="max-w-[1400px] mx-auto px-6 py-20 md:py-32 font-sans">
       <div className="flex flex-col xl:flex-row gap-8 md:gap-12">
-        {/* Game Area */}
         <div className="flex-1 relative group w-full">
-          <div className="glass-card rounded-[32px] md:rounded-[40px] overflow-hidden relative shadow-[0_0_100px_rgba(0,0,0,0.4)] aspect-[4/3] sm:aspect-video md:aspect-[16/9] min-h-[400px] md:min-h-[500px]">
+          <div className="glass-card rounded-[32px] md:rounded-[40px] overflow-hidden relative shadow-[0_0_100px_rgba(0,0,0,0.4)] aspect-[3/4] sm:aspect-video md:aspect-[16/9] min-h-[450px] md:min-h-[500px]">
             <Canvas shadows gl={{ antialias: true }}>
               {renderEngine()}
             </Canvas>
@@ -385,23 +400,31 @@ export default function GamePage() {
 
             {/* HUD */}
             {isPlaying && (
-              <div className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex justify-between items-start pointer-events-none z-10">
-                <motion.div 
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl px-4 py-2 md:px-8 md:py-4"
-                >
-                  <p className="text-[7px] md:text-[9px] text-zinc-500 font-black uppercase tracking-[0.3em] mb-1">Velocity Score</p>
-                  <p className="text-xl md:text-4xl font-mono font-black text-white italic">{Math.floor(score)}</p>
-                </motion.div>
-                
-                <div className="flex flex-col items-end gap-3">
-                  <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl px-3 py-1.5 md:px-6 md:py-3">
-                    <p className="text-[7px] md:text-[9px] text-emerald-accent font-black uppercase tracking-[0.3em]">Link Stable</p>
+              <>
+                <div className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex justify-between items-start pointer-events-none z-10">
+                  <motion.div 
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl px-4 py-2 md:px-8 md:py-4"
+                  >
+                    <p className="text-[7px] md:text-[9px] text-zinc-500 font-black uppercase tracking-[0.3em] mb-1">Vector Score</p>
+                    <p className="text-xl md:text-4xl font-mono font-black text-white italic">{Math.floor(score)}</p>
+                  </motion.div>
+                  
+                  <div className="flex flex-col items-end gap-3">
+                    <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl md:rounded-2xl px-3 py-1.5 md:px-6 md:py-3">
+                      <p className="text-[7px] md:text-[9px] text-emerald-accent font-black uppercase tracking-[0.3em]">Link Stable</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                <TouchControls 
+                  onLeft={() => handleMobileMove('left')} 
+                  onRight={() => handleMobileMove('right')} 
+                />
+              </>
             )}
+
           </div>
         </div>
 
@@ -469,6 +492,31 @@ export default function GamePage() {
   );
 }
 
+function TouchControls({ onLeft, onRight }: { onLeft: () => void, onRight: () => void }) {
+  return (
+    <div className="absolute inset-0 z-20 flex md:hidden pointer-events-none">
+      <button 
+        onMouseDown={onLeft}
+        onTouchStart={(e) => { e.preventDefault(); onLeft(); }}
+        className="flex-1 pointer-events-auto h-full flex items-center justify-start p-8 group active:bg-white/5 transition-colors"
+      >
+        <div className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-40 group-active:opacity-100 transition-opacity">
+          <ArrowLeft className="w-6 h-6 text-white" />
+        </div>
+      </button>
+      <button 
+        onMouseDown={onRight}
+        onTouchStart={(e) => { e.preventDefault(); onRight(); }}
+        className="flex-1 pointer-events-auto h-full flex items-center justify-end p-8 group active:bg-white/5 transition-colors"
+      >
+        <div className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-40 group-active:opacity-100 transition-opacity">
+          <ChevronRight className="w-6 h-6 text-white" />
+        </div>
+      </button>
+    </div>
+  );
+}
+
 function ControlItem({ label, keys }: { label: string, keys: string[] }) {
   return (
     <div className="flex items-center justify-between">
@@ -481,3 +529,4 @@ function ControlItem({ label, keys }: { label: string, keys: string[] }) {
     </div>
   );
 }
+

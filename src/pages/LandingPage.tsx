@@ -86,7 +86,7 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-transparent via-transparent to-forest-900/40 md:to-forest-900/80 z-10" />
               <img 
                 src="/images/hero_racer.png" 
-                alt="VelocityX Racer" 
+                alt="VectorX Racer" 
                 className="w-full h-full object-cover object-center scale-110 md:scale-100"
               />
             </motion.div>
