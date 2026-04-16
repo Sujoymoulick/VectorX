@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Trophy, Play, RotateCcw, Gamepad2, ArrowLeft, Info } from 'lucide-react';
+import { Trophy, Play, RotateCcw, Gamepad2, ArrowLeft, Info, ChevronRight } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sky, PerspectiveCamera, Box, Sphere, Grid, Float, Text, Trail } from '@react-three/drei';
 import * as THREE from 'three';
 import { GAMES, Game } from '../data/games';
+import { motion } from 'motion/react';
 
 // Constants
 const LANE_WIDTH = 3;
@@ -179,6 +180,9 @@ function CombatEngine({ game, isPlaying, isGameOver, endGame, updateScore }: any
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 10]} />
       <Sky sunPosition={[0, 0, -1]} />
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[10, 10, 10]} intensity={1} />
+      
       <group ref={weaponRef}>
         <Box args={[0.5, 0.5, 2]}><meshStandardMaterial color={game.color} wireframe /></Box>
         <pointLight intensity={2} color={game.color} />
@@ -263,8 +267,11 @@ function AbstractEngine({ game, isPlaying, isGameOver, updateScore }: any) {
         ))}
       </group>
       <Sky sunPosition={[0, 1, 0]} />
-      <Text position={[0, 0, -10]} fontSize={2} color={game.color} font="/fonts/Inter-Bold.woff">
-        {game.title.toUpperCase()}
+      <ambientLight intensity={0.5} />
+      <pointLight position={[0, 0, 10]} intensity={1} />
+      <Grid infiniteGrid fadeDistance={50} cellColor="#111" sectionColor={game.color} />
+      <Text position={[0, 0, -10]} fontSize={2} color={game.color}>
+        {game.id.toUpperCase()}
       </Text>
     </>
   );
